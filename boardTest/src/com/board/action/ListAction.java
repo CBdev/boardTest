@@ -1,9 +1,5 @@
 package com.board.action;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -44,10 +40,14 @@ public class ListAction implements CommandAction{
                 articleList.add(article); // 셋팅된 빈을 리스트에 추가합니다. 
             } 
             */
-        	        	
-        	ArrayList<Board> articleList = BoardDao.getInstance().getArticleList();
+			int page=0;	//기본페이지는 0
+			if(request.getParameter("page") != null){	//넘어온 파라미터가 있다면
+				page = Integer.parseInt(request.getParameter("page"));	//해당 파라미터를 int형으로 캐스팅 후 page변수에 넣어줌
+			}
+		
+        	ArrayList<Board> articleList = BoardDao.getInstance().getArticleList(page);
             request.setAttribute("articleList", articleList); // 셋팅된 리스트를 뷰에 포워드합니다.
-            
+            request.setAttribute("page", page);	//페이지 번호를 뷰에서 보기위해 표시
             /*con.close();  //BoardDao.java 파일로 이동됨
         } catch (Exception e) { 
             System.err.println("Mysql Database Connection Something Problem."); 

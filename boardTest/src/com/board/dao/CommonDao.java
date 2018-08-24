@@ -1,8 +1,19 @@
 package com.board.dao;
 
-import java.sql.*;
+import com.board.db.sqlconfig.IBatisDBConnector;
+import com.ibatis.sqlmap.client.SqlMapClient;
 
 public class CommonDao { 
+	private SqlMapClient myDB;
+	 
+	public void SetDB() {
+	    myDB = IBatisDBConnector.getSqlMapInstance();
+	}
+	protected SqlMapClient GetDB() {
+	    return myDB;
+	}
+	//데이터베이스 연결과 관리는 아이바티스에게 넘겼음
+	/*
     //공통적으로 쓰일 접속에 관련된 정보 변수들을 상수로 선언합니다. 
     private final String driverName="com.mysql.jdbc.Driver"; 
     private final String url="jdbc:mysql://localhost:3306/board_test"; 
@@ -35,6 +46,7 @@ public class CommonDao {
             e.printStackTrace(); 
         } 
     } 
+    */
 }
 
 

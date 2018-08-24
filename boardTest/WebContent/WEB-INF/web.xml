@@ -9,13 +9,12 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  <servlet>	<!-- 컨트롤러 위치 지정 -->
-  	<servlet-name>ControllerAction</servlet-name>
-  	<servlet-class>com.board.controller.ControllerAction</servlet-class>
+  <servlet>
+    <servlet-name>ControllerAction</servlet-name>
+    <servlet-class>com.board.controller.ControllerAction</servlet-class>
   </servlet>
-  <!-- servlet-mapping : 모든 요청이 아닌 .do 요청으로 들어왔을때만 ControllerAction을 실행 -->
-  <servlet-mapping>	
-  	<servlet-name>ControllerAction</servlet-name>
-  	<url-pattern>*.do</url-pattern>
+  <servlet-mapping>
+    <servlet-name>ControllerAction</servlet-name>
+    <url-pattern>*.do</url-pattern>
   </servlet-mapping>
 </web-app>

@@ -5,6 +5,11 @@
 <%@ page import="java.sql.*" %>	
 <!-- jstl을 사용하기 위해 ,라이브러리 사용 선언 -->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!-- 리스트의 사이즈 조사위해 추가 -->
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<!-- 소수점 처리위해 -->
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -49,18 +54,54 @@
 			<th>날짜</th>
 			<th>조회수</th>
 		</tr>
-		<c:forEach  items="${articleList }" var="article">
+		<c:forEach items="${articleList }" var="article">
 			<tr>
 				<td>${article.idx}</td>
-				<td><a href='content.jsp?idx=${article.idx}'>${article.title}</a></td>
+				<td><a href='count.do?idx=${article.idx}'>${article.title}</a></td>
+				<!-- 카운트 추가 전 <td><a href='content.do?idx=${article.idx}'>${article.title}</a></td> -->
 				<td>${article.writer}</td>
 				<td>${article.regdate}</td>
 				<td>${article.count}</td>
 			</tr>
 		</c:forEach>
 	</table>
+	
+	<!-- 페이지가 0보다 크면 이전페이지에 파라미터를 10을 빼서 넘기는 url -->
+	<c:if test="${page >0 }">
+		<a href="list.do?page=${page-10 }">이전페이지</a>
+	</c:if>
+	<c:if test="${page==0 }">
+		<a href="#">이전페이지</a>
+	</c:if>
+	
+	<fmt:parseNumber value="${page/10+1 }" type="number" integerOnly="True" />페이지
+	
+	<c:if test="${fn:length(articleList) < 10 }">
+		<a href="#">다음페이지</a>
+	</c:if>
+	<c:if test="${fn:length(articleList)==10 }">
+		<a href="list.do?page=${page+10 }">다음페이지</a>
+	</c:if>
+	
+	<!-- 
+	<a href="list.do?page=${page-10 }">이전페이지</a>
+	${page/10+1 }페이지
+	<a href="list.do?page=${page+10 }">다음페이지</a>
+	 -->
+	<br/><br/>
 	<a href="write.jsp">글쓰기</a>
 	<a href="#" onclick="loadNextPage()">더보기</a>
 	<a href="logout.jsp">로그아웃</a>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+

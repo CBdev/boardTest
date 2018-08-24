@@ -8,7 +8,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
 </head>
-<%
+<script>
+	location.href="list.do";
+</script>
+
+<%/*
 	request.setCharacterEncoding("euc-kr");
 	String title = request.getParameter("title");
 	String writer = request.getParameter("writer");
@@ -23,9 +27,6 @@
 	if(content == "" ||content == null) out.println("content is null");
 	
 try {
-	 //String driverName = "oracle.jdbc.driver.OracleDriver";	
-	 //String url = "jdbc:oracle:thin:@localhost:1521:XE";	
-	 
 	 String driverName = "com.sybase.jdbc4.jdbc.SybDriver";	
 	 String url = "jdbc:sybase:Tds:210.115.58.233:2638?ServiceName=test";	
 	 
@@ -47,6 +48,7 @@ try {
 	}finally{
 		out.print("<script>location.href='index.jsp';</script>");
 	}
+*/
 %>
 <body>
 </body>

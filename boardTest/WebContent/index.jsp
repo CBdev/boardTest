@@ -8,6 +8,7 @@
 </head>
 <script type="text/javascript">
 	location.href="list.do";
+	//location.href="loginForm.do";
 </script>
 <body>
 
